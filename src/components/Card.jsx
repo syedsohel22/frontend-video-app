@@ -1,7 +1,22 @@
-import { AspectRatio, Box, Text } from "@chakra-ui/react";
+import {
+  AspectRatio,
+  Box,
+  Button,
+  HStack,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import React from "react";
 
 const Card = ({ name, link }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box
       border="1px solid grey"
@@ -14,9 +29,34 @@ const Card = ({ name, link }) => {
         {name}
       </Text>
 
-      <AspectRatio maxW="240px" ratio={1}>
-        <iframe src={link} title={name} />
-      </AspectRatio>
+      <video></video>
+      <HStack spacing={3}>
+        <Button onClick={onOpen} size="xs">
+          Play
+        </Button>
+        <Button size="xs">Edit</Button>
+        <Button colorScheme="red" size="xs">
+          Delete
+        </Button>
+      </HStack>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <AspectRatio maxW="640px" ratio={1}>
+              <iframe src={link} title={name} sandbox />
+            </AspectRatio>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Box>
   );
 };
