@@ -14,7 +14,7 @@ const Bucket = () => {
 
   useEffect(() => {
     dispatch(getCard());
-  }, []);
+  }, [dispatch]);
   return (
     <div>
       {state.length > 0 &&
