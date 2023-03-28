@@ -13,13 +13,15 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { postHistory } from "../redux/historyReducer/action";
+import { deleteCard, patchCard } from "../redux/userReducer/action";
+import { getCard } from "./../redux/userReducer/action";
 
-const Card = ({ name, link }) => {
+const Card = ({ name, link, id }) => {
   const [playTime, setPlayTime] = useState(null);
-  //  const [history, setHistory] = useState([]);
+  const [change, setChange] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
   const playCard = () => {
@@ -28,10 +30,24 @@ const Card = ({ name, link }) => {
     setPlayTime(time);
     const history = { id: Date.now(), name: name, link: link, time };
     dispatch(postHistory(history));
-    // setHistory(newHistory);
+
     console.log(playTime);
   };
 
+  const handleDelete = (id) => {
+   
+    dispatch(deleteCard(id));
+    setChange((p) => !p);
+  };
+
+  const handleEdit = (id) => {
+    // const cardData = { name, link };
+    // dispatch(patchCard(cardData, id));
+    // setChange((p) => !p);
+  };
+  useEffect(() => {
+    dispatch(getCard());
+  }, [change]);
   return (
     <Box
       border="1px solid grey"
@@ -49,8 +65,10 @@ const Card = ({ name, link }) => {
         <Button onClick={playCard} size="xs">
           Play
         </Button>
-        <Button size="xs">Edit</Button>
-        <Button colorScheme="red" size="xs">
+        <Button size="xs" onClick={() => handleEdit(id)}>
+          Edit
+        </Button>
+        <Button colorScheme="red" size="xs" onClick={() => handleDelete(id)}>
           Delete
         </Button>
       </HStack>
@@ -59,7 +77,7 @@ const Card = ({ name, link }) => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>{name}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <AspectRatio maxW="640px" ratio={1}>

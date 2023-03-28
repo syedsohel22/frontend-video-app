@@ -42,9 +42,9 @@ export const postCard = (cardData) => (dispatch) => {
 };
 
 //PATCH request
-export const patchCard = (cardData) => (dispatch) => {
+export const patchCard = (cardData, id) => (dispatch) => {
   return axios
-    .patch(API, cardData)
+    .patch(`http://localhost:8080/posts/${id}`, cardData)
     .then((res) => {
       dispatch({ type: CARD_PATCH_REQUEST_SUCCESS });
     })
@@ -57,8 +57,9 @@ export const patchCard = (cardData) => (dispatch) => {
 //DELETE request
 export const deleteCard = (id) => (dispatch) => {
   return axios
-    .delete(API, id)
+    .delete(`http://localhost:8080/posts/${id}`)
     .then((res) => {
+      //  console.log(res);
       dispatch({ type: CARD_DELETE_REQUEST_SUCCESS });
     })
     .catch((err) => {
