@@ -4,6 +4,16 @@
       "id": 1,
       "title": "json-server",
       "link": ""
+    },
+    {
+      "name": "hey hey",
+      "link": "http://localhost:8080/posts",
+      "id": 2
+    },
+    {
+      "name": "song",
+      "link": "https://www.youtube.com/watch?v=hp_-RlwNg04",
+      "id": 3
     }
   ]
 }
