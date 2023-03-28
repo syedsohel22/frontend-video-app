@@ -1,6 +1,5 @@
 # Front-end Video App
 
-`
 
 ### Features
 
