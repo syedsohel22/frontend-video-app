@@ -1,16 +1,23 @@
+import { AspectRatio, Box, Text } from "@chakra-ui/react";
 import React from "react";
 
 const Card = ({ name, link }) => {
   return (
-    <div>
-      <p>{name}</p>
-      <p>{link}</p>
-      <video width="320" height="240" controls>
-        <source src={link} type="video/mp4" />
-        <source src={link} type="video/mp4" />
-        Sorry, your browser doesn't support embedded videos.
-      </video>
-    </div>
+    <Box
+      border="1px solid grey"
+      align="center"
+      justifyContent="center"
+      maxW={200}
+      p="3"
+    >
+      <Text noOfLines={[1, 2, 3]} fontSize="sm" p="3px">
+        {name}
+      </Text>
+
+      <AspectRatio maxW="240px" ratio={1}>
+        <iframe src={link} title={name} />
+      </AspectRatio>
+    </Box>
   );
 };
 

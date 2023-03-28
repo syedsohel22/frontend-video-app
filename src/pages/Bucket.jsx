@@ -1,3 +1,4 @@
+import { SimpleGrid } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -16,12 +17,12 @@ const Bucket = () => {
     dispatch(getCard());
   }, [dispatch]);
   return (
-    <div>
+    <SimpleGrid columns={5} spacing={10} w="80%" m="auto" marginTop={10}>
       {state.length > 0 &&
         state.map((el) => {
           return <Card key={el.id} {...el} />;
         })}
-    </div>
+    </SimpleGrid>
   );
 };
 
