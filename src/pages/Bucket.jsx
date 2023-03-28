@@ -15,7 +15,7 @@ const Bucket = () => {
 
   useEffect(() => {
     dispatch(getCard());
-  }, []);
+  }, [dispatch]);
   return (
     <SimpleGrid columns={5} spacing={10} w="80%" m="auto" marginTop={10}>
       {state.length > 0 &&

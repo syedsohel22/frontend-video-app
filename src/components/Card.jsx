@@ -46,7 +46,7 @@ const Card = ({ name, link, id }) => {
   };
   useEffect(() => {
     dispatch(getCard());
-  }, [change]);
+  }, [change, dispatch]);
   return (
     <Box
       border="1px solid grey"
