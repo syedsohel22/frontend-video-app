@@ -13,10 +13,25 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { postHistory } from "../redux/historyReducer/action";
 
 const Card = ({ name, link }) => {
+  const [playTime, setPlayTime] = useState(null);
+  //  const [history, setHistory] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const dispatch = useDispatch();
+  const playCard = () => {
+    onOpen();
+    const time = new Date().toLocaleString();
+    setPlayTime(time);
+    const history = { id: Date.now(), name: name, link: link, time };
+    dispatch(postHistory(history));
+    // setHistory(newHistory);
+    console.log(playTime);
+  };
+
   return (
     <Box
       border="1px solid grey"
@@ -25,13 +40,13 @@ const Card = ({ name, link }) => {
       maxW={200}
       p="3"
     >
-      <Text noOfLines={[1, 2, 3]} fontSize="sm" p="3px">
+      <Text noOfLines={[1, 2, 3]} fontSize="xl" p="3px">
         {name}
       </Text>
 
       <video></video>
       <HStack spacing={3}>
-        <Button onClick={onOpen} size="xs">
+        <Button onClick={playCard} size="xs">
           Play
         </Button>
         <Button size="xs">Edit</Button>
@@ -39,6 +54,8 @@ const Card = ({ name, link }) => {
           Delete
         </Button>
       </HStack>
+      {/* 
+      modal for playing video onClick Play Button */}
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
@@ -46,7 +63,7 @@ const Card = ({ name, link }) => {
           <ModalCloseButton />
           <ModalBody>
             <AspectRatio maxW="640px" ratio={1}>
-              <iframe src={link} title={name} sandbox />
+              <iframe src={link} title={name} />
             </AspectRatio>
           </ModalBody>
 

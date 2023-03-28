@@ -17,7 +17,7 @@ export const getCard = () => (dispatch) => {
   return axios
     .get(API)
     .then((res) => {
-      console.log(res.data);
+      console.log("cardData", res.data);
       dispatch({ type: CARD_REQUEST_SUCCESS, payload: res.data });
     })
     .catch((err) => {
