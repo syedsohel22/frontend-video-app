@@ -9,7 +9,7 @@ const Bucket = () => {
   const state = useSelector((state) => {
     return state.userReducer.data;
   });
- // console.log(state);
+  // console.log(state);
 
   const dispatch = useDispatch();
 
