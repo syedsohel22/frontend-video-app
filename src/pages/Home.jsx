@@ -25,6 +25,7 @@ const Home = () => {
     let data = {
       name,
       link,
+      id: Date.now(),
     };
     if (name.length > 0 && link.length > 0) {
       dispatch(postCard(data));

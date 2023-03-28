@@ -6,12 +6,12 @@ import {
   CARD_POST_REQUEST_SUCCESS,
   CARD_PATCH_REQUEST_SUCCESS,
 } from "./actionTypes";
-const initaState = {
+const initalState = {
   isLoading: false,
   isError: false,
   data: [],
 };
-export const reducer = (state = initaState, { type, payload }) => {
+export const reducer = (state = initalState, { type, payload }) => {
   switch (type) {
     case CARD_REQUEST_PENDING:
       return { ...state, isLoading: true };
