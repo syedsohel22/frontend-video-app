@@ -16,7 +16,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { postHistory } from "../redux/historyReducer/action";
-import { deleteCard, patchCard } from "../redux/userReducer/action";
+import { deleteCard } from "../redux/userReducer/action";
 import { getCard } from "./../redux/userReducer/action";
 
 const Card = ({ name, link, id }) => {
@@ -35,7 +35,6 @@ const Card = ({ name, link, id }) => {
   };
 
   const handleDelete = (id) => {
-   
     dispatch(deleteCard(id));
     setChange((p) => !p);
   };
