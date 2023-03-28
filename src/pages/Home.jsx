@@ -26,7 +26,11 @@ const Home = () => {
       name,
       link,
     };
-    dispatch(postCard(data));
+    if (name.length > 0 && link.length > 0) {
+      dispatch(postCard(data));
+    } else {
+      alert("please Enter Corret data");
+    }
     console.log(data);
 
     //resting input after POST
@@ -42,6 +46,7 @@ const Home = () => {
       d="flex"
       align={"center"}
       justify={"center"}
+      m="auto"
     >
       <Stack>
         <FormControl gap={8} isRequired>
