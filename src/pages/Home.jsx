@@ -19,6 +19,8 @@ const Home = () => {
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    
     let data = {
       name,
       link,
