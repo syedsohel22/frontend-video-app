@@ -14,6 +14,7 @@ import { postCard } from "../redux/userReducer/action";
 
 const Home = () => {
   const [name, setName] = useState("");
+  
   const [link, setLink] = useState("");
 
   const dispatch = useDispatch();
@@ -21,6 +22,9 @@ const Home = () => {
     e.preventDefault();
 
     
+
+
+
     let data = {
       name,
       link,
